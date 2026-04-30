@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #C9507B;
+  --secondary: #C9A84C;
+  --dark: #2D0A1A;
+  --cream: #FDF5F8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFFAF9;
+  color: #2D0A1A;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-rose-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-rose-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 inline-block;
+  }
+
+  .btn-outline {
+    @apply border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-rose-primary transition-all duration-300 inline-block;
+  }
+
+  .btn-gold {
+    @apply bg-gold-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-gold-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 inline-block;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-parlour-dark mb-3;
+  }
+
+  .section-subtitle {
+    @apply text-rose-primary font-semibold text-sm uppercase tracking-widest mb-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-rose-primary to-gold-primary bg-clip-text text-transparent;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FDF5F8; }
+::-webkit-scrollbar-thumb { background: #C9507B; border-radius: 4px; }
+
+/* WhatsApp floating button pulse */
+.whatsapp-btn {
+  animation: pulseGreen 2s infinite;
+}
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Star rating */
+.star { color: #FFB800; }
+
+/* Offer badge */
+.offer-badge {
+  background: linear-gradient(135deg, #C9507B, #C9A84C);
+  animation: pulseGold 2s infinite;
+}

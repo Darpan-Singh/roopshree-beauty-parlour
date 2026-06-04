@@ -18,6 +18,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  // Only the homepage has a dark hero behind the navbar; everywhere else the
+  // top of the page is light, so the navbar must use its solid/dark style.
+  const isHome = pathname === '/';
+  const solid = scrolled || !isHome;
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', onScroll);
@@ -29,11 +34,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        scrolled
-          ? 'py-2 shadow-rose'
-          : 'py-4'
-      }`}
-      style={scrolled ? {
+        scrolled ? 'py-2' : 'py-4'
+      } ${solid ? 'shadow-rose' : ''}`}
+      style={solid ? {
         background: 'rgba(255,250,249,0.92)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
@@ -51,10 +54,10 @@ export default function Navbar() {
             R
           </div>
           <div>
-            <p className={`font-heading font-bold text-lg leading-none transition-colors duration-300 ${scrolled ? 'text-parlour-dark' : 'text-white'}`}>
+            <p className={`font-heading font-bold text-lg leading-none transition-colors duration-300 ${solid ? 'text-parlour-dark' : 'text-white'}`}>
               RoopShree
             </p>
-            <p className={`text-[11px] leading-none tracking-wide transition-colors duration-300 ${scrolled ? 'text-rose-primary' : 'text-rose-light'}`}>
+            <p className={`text-[11px] leading-none tracking-wide transition-colors duration-300 ${solid ? 'text-rose-primary' : 'text-rose-light'}`}>
               Beauty Parlour
             </p>
           </div>
@@ -71,7 +74,7 @@ export default function Navbar() {
                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
                   active
                     ? 'text-white'
-                    : scrolled
+                    : solid
                     ? 'text-parlour-dark hover:text-rose-primary'
                     : 'text-white/90 hover:text-white'
                 }`}
@@ -101,14 +104,14 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className={`md:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-parlour-dark' : 'text-white'}`}
+          className={`md:hidden p-2 rounded-lg transition-colors ${solid ? 'text-parlour-dark' : 'text-white'}`}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
           <div className="w-6 h-5 flex flex-col justify-between">
-            <span className={`block h-0.5 rounded-full transition-all duration-300 origin-center ${open ? 'rotate-45 translate-y-2.5' : ''} ${scrolled ? 'bg-parlour-dark' : 'bg-white'}`} />
-            <span className={`block h-0.5 rounded-full transition-all duration-300 ${open ? 'opacity-0 scale-x-0' : ''} ${scrolled ? 'bg-parlour-dark' : 'bg-white'}`} />
-            <span className={`block h-0.5 rounded-full transition-all duration-300 origin-center ${open ? '-rotate-45 -translate-y-2.5' : ''} ${scrolled ? 'bg-parlour-dark' : 'bg-white'}`} />
+            <span className={`block h-0.5 rounded-full transition-all duration-300 origin-center ${open ? 'rotate-45 translate-y-2.5' : ''} ${solid ? 'bg-parlour-dark' : 'bg-white'}`} />
+            <span className={`block h-0.5 rounded-full transition-all duration-300 ${open ? 'opacity-0 scale-x-0' : ''} ${solid ? 'bg-parlour-dark' : 'bg-white'}`} />
+            <span className={`block h-0.5 rounded-full transition-all duration-300 origin-center ${open ? '-rotate-45 -translate-y-2.5' : ''} ${solid ? 'bg-parlour-dark' : 'bg-white'}`} />
           </div>
         </button>
       </div>

@@ -36,6 +36,13 @@ export default function ContactPage() {
               <h2 className="font-heading font-bold text-2xl text-parlour-dark mb-6">Visit Us</h2>
               <div className="space-y-5">
                 <div className="flex gap-4 items-start">
+                  <span className="text-2xl mt-0.5">👑</span>
+                  <div>
+                    <p className="font-semibold text-parlour-dark">Owner</p>
+                    <p className="text-gray-500 text-sm">{BUSINESS.owner}</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
                   <span className="text-2xl mt-0.5">📍</span>
                   <div>
                     <p className="font-semibold text-parlour-dark">Address</p>

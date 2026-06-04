@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BUSINESS } from '@/lib/data';
 
 const TEAM = [
+  { name: 'Mrs. Barkha Malviya', role: 'Founder & Head Beautician', exp: '8+ years', emoji: '👑', founder: true },
   { name: 'Sunita Ji', role: 'Senior Beautician & Bridal Expert', exp: '10+ years', emoji: '👩‍🦱' },
   { name: 'Priya Ji', role: 'Hair Specialist & Colorist', exp: '7+ years', emoji: '👩' },
   { name: 'Rekha Ji', role: 'Skin Care & Facial Expert', exp: '6+ years', emoji: '👩‍🦰' },
@@ -20,7 +21,7 @@ export default function AboutPage() {
     <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="relative py-20 bg-gradient-to-br from-parlour-dark via-parlour-mid to-rose-dark text-white text-center overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600&q=40')`, backgroundSize: 'cover' }} />
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=40')`, backgroundSize: 'cover' }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4">
           <p className="text-gold-primary text-sm uppercase tracking-widest mb-3">Our Story</p>
           <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4">
@@ -38,8 +39,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1560066984-138daaa1463b?w=800&q=80"
-                alt="RoopShree Beauty Parlour"
+                src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=800&q=80"
+                alt="RoopShree Beauty Parlour Interior"
                 fill
                 className="object-cover"
               />
@@ -49,7 +50,7 @@ export default function AboutPage() {
               <h2 className="section-title">Our <span className="gradient-text">Journey</span></h2>
               <div className="space-y-4 text-gray-600 leading-relaxed mt-4">
                 <p>
-                  RoopShree Beauty Parlour was founded in 2016 with a simple mission: to make every woman feel confident, beautiful, and pampered without spending a fortune.
+                  RoopShree Beauty Parlour was founded in 2016 by <strong className="text-parlour-dark">{BUSINESS.owner}</strong> with a simple mission: to make every woman feel confident, beautiful, and pampered without spending a fortune.
                 </p>
                 <p>
                   Located in the heart of Basant Vihar, Kota, we have served over <strong className="text-parlour-dark">{BUSINESS.totalClients} happy clients</strong> and built a reputation for quality, hygiene, and genuine care.
@@ -101,11 +102,24 @@ export default function AboutPage() {
             <p className="section-subtitle">Meet the Experts</p>
             <h2 className="section-title">Our <span className="gradient-text">Team</span></h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {TEAM.map((member) => (
-              <div key={member.name} className="card p-6 text-center">
+              <div
+                key={member.name}
+                className={`card p-6 text-center relative overflow-hidden ${member.founder ? 'ring-2 ring-gold-primary' : ''}`}
+              >
+                {member.founder && (
+                  <div className="absolute top-0 left-0 right-0 h-1"
+                       style={{ background: 'linear-gradient(90deg, #C9507B, #C9A84C)' }} />
+                )}
                 <div className="text-6xl mb-4">{member.emoji}</div>
                 <h3 className="font-heading font-bold text-xl text-parlour-dark">{member.name}</h3>
+                {member.founder && (
+                  <span className="inline-block text-[11px] font-bold text-white px-2.5 py-0.5 rounded-full mt-2 mb-1"
+                        style={{ background: 'linear-gradient(135deg, #C9507B, #C9A84C)' }}>
+                    Founder & Owner
+                  </span>
+                )}
                 <p className="text-rose-primary text-sm font-medium mt-1">{member.role}</p>
                 <p className="text-gray-400 text-xs mt-2">{member.exp} experience</p>
               </div>

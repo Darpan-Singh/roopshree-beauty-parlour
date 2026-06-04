@@ -3,61 +3,108 @@ import { OFFERS } from '@/lib/data';
 
 export default function OffersSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-parlour-dark via-parlour-mid to-parlour-dark relative overflow-hidden">
-      {/* Decorative */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-rose-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gold-primary/10 rounded-full blur-3xl" />
+    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #2D0A1A 0%, #5C1A3A 50%, #2D0A1A 100%)' }}>
+
+      {/* Decorative blobs */}
+      <div className="absolute top-0 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-15"
+           style={{ background: 'radial-gradient(circle, #C9507B, transparent)' }} />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-15"
+           style={{ background: 'radial-gradient(circle, #C9A84C, transparent)' }} />
+
+      {/* Dashed ring */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+        <div className="w-[600px] h-[600px] rounded-full border border-gold-primary animate-spin-slow" style={{ borderStyle: 'dashed' }} />
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-10">
-          <p className="text-gold-primary font-semibold text-sm uppercase tracking-widest mb-2">Limited Time</p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white">
-            Special <span className="text-gold-primary">Offers</span>
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 text-white"
+                style={{ background: 'rgba(201,168,76,0.2)', border: '1px solid rgba(201,168,76,0.3)' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-primary inline-block" />
+            Limited Time Offers
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-primary inline-block" />
+          </span>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-3">
+            Special{' '}
+            <span style={{
+              background: 'linear-gradient(135deg, #C9A84C, #EDD98A, #C9A84C)',
+              backgroundSize: '200% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animation: 'gradientFlow 4s linear infinite',
+            }}>
+              Offers
+            </span>
           </h2>
-          <p className="text-white/60 mt-2">Don't miss these exclusive deals — grab before they expire!</p>
+          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            Don't miss these exclusive deals — grab before they expire!
+          </p>
         </div>
 
+        {/* Offer cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {OFFERS.map((offer) => (
             <div
               key={offer.id}
-              className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:border-gold-primary transition-all duration-300 hover:-translate-y-1"
+              className="glass-card relative flex flex-col overflow-hidden group"
             >
-              {/* Badge */}
-              <span className="offer-badge inline-block text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-                {offer.badge}
-              </span>
+              {/* Top accent bar */}
+              <div className="h-1" style={{ background: 'linear-gradient(90deg, #C9507B, #C9A84C)' }} />
 
-              {/* Discount tag */}
-              <div className="absolute top-4 right-4 bg-gold-primary text-white font-bold text-lg px-3 py-1 rounded-lg rotate-2">
+              {/* Ribbon */}
+              <div
+                className="absolute top-5 right-0 text-white text-sm font-bold px-4 py-1.5 shadow-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #C9A84C, #9A7A1E)',
+                  clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%)',
+                }}
+              >
                 {offer.discount}
               </div>
 
-              <h3 className="font-heading font-bold text-xl text-white mb-2">{offer.title}</h3>
-              <p className="text-white/60 text-sm mb-4">{offer.description}</p>
+              <div className="p-6 flex-1">
+                {/* Badge */}
+                <span className="offer-badge inline-block text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                  {offer.badge}
+                </span>
 
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-white/40 line-through text-sm">{offer.originalPrice}</span>
-                <span className="text-gold-primary font-bold text-2xl font-heading">{offer.offerPrice}</span>
+                <h3 className="font-heading font-bold text-xl text-white mb-2 pr-20">{offer.title}</h3>
+                <p className="text-sm mb-5" style={{ color: 'rgba(255,255,255,0.55)' }}>{offer.description}</p>
+
+                {/* Pricing */}
+                <div className="flex items-baseline gap-3 mb-1">
+                  <span className="line-through text-sm" style={{ color: 'rgba(255,255,255,0.35)' }}>{offer.originalPrice}</span>
+                  <span className="font-heading font-bold text-3xl" style={{
+                    background: 'linear-gradient(135deg, #C9A84C, #EDD98A)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}>
+                    {offer.offerPrice}
+                  </span>
+                </div>
+                <p className="text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>{offer.validity}</p>
+                <p className="text-xs font-mono" style={{ color: 'rgba(201,168,76,0.8)' }}>Code: <strong>{offer.code}</strong></p>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-white/40 text-xs">{offer.validity}</p>
-                  <p className="text-gold-light text-xs font-mono mt-0.5">Code: {offer.code}</p>
-                </div>
+              {/* Footer */}
+              <div className="px-6 py-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
                 <Link
                   href="/book"
-                  className="bg-gold-primary hover:bg-gold-dark text-white text-sm px-4 py-2 rounded-full transition-colors font-semibold"
+                  className="w-full block text-center text-sm font-semibold py-3 rounded-xl transition-all duration-300 text-white hover:-translate-y-0.5"
+                  style={{ background: 'linear-gradient(135deg, #C9A84C, #9A7A1E)', boxShadow: '0 6px 20px -4px rgba(201,168,76,0.4)' }}
                 >
-                  Claim →
+                  Claim This Offer →
                 </Link>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="text-center text-white/40 text-xs mt-6">
+        <p className="text-center text-xs mt-8" style={{ color: 'rgba(255,255,255,0.3)' }}>
           * Offers valid on prior booking. Cannot be combined with other discounts.
         </p>
       </div>

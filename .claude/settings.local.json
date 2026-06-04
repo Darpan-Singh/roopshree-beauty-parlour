@@ -10,7 +10,8 @@
       "Bash(git config *)",
       "PowerShell(git config *)",
       "PowerShell(winget install *)",
-      "PowerShell(vercel *)"
+      "PowerShell(vercel *)",
+      "Bash(npx vercel *)"
     ]
   }
 }

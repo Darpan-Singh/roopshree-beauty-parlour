@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GALLERY_IMAGES } from '@/lib/data';
 
-const CATEGORIES = ['All', 'Makeup', 'Hair', 'Skin', 'Nails'];
+const CATEGORIES = ['All', ...Array.from(new Set(GALLERY_IMAGES.map((img) => img.category)))];
 
 export default function GalleryPage() {
   const [active, setActive] = useState('All');
